@@ -1,4 +1,4 @@
-# form-modal-v
+# form-modal-vue
 
 ## Project setup
 ```

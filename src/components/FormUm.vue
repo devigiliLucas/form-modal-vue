@@ -13,7 +13,7 @@
     </div>
     <label>Nome completo</label>
     <br />
-    <input type="text" class="bigInput name" name="nome" autocomplete="off" />
+    <input type="text" class="bigInput name" name="nome" autocomplete="Off" />
     <div id="labelEmail">
       <label>E-mail</label>
       <label>Confirmar e-mail</label>
@@ -44,11 +44,15 @@
         name="cpf"
         maxlength="14"
         autocomplete="off"
+        v-maska="'###.###.###-##'"
+        
       />
       <input
         type="text"
         class="mediumInput paddingInput celphone"
         name="celular"
+        v-maska="'(##) #####-####'"
+        autocomplete="off"
       />
     </div>
     <label>Data de nascimento</label>
@@ -86,8 +90,11 @@
 </template>
 
 <script>
+// import { maska } from 'maska'
+
 export default {
   name: "formulárioUm",
+  // directives: { maska },
   methods: {
     hiddenForm1() {
       const Nome = document.querySelector(".name").value;

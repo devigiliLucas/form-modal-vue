@@ -1,5 +1,5 @@
 <template>
-  <form id="form2">
+  <form id="form2" >
     <br />
     <div id="texts">
       <h2 class="subtitle">Dados pessoais</h2>
@@ -83,8 +83,6 @@ export default {
 <style scoped>
 * {
   color: rgb(0, 0, 0);
-
-
 }
 
 input[type="number"]::-webkit-inner-spin-button {
