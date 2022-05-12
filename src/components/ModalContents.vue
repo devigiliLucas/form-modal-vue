@@ -11,12 +11,27 @@
     <div id="nav">
       <p>Analíse e confirme os dados inputados no cadastro</p>
       <div id="buttons">
-        <input type="button" class="btnBody" value="Cadastro" />
-        <input type="button" class="btnBody margin" value="Pessoal" />
+        <input
+          type="button"
+          class="btnBody btnCadastro"
+          value="Cadastro"
+          @click="changeScreen2()"
+        />
+        <input
+          type="button"
+          class="btnBody btnPessoal margin"
+          value="Pessoal"
+          @click="changeScreen1()"
+        />
       </div>
     </div>
     <div id="body">
-      <cadastro />
+      <div id="cadastro">
+        <cadastro />
+      </div>
+      <div id="pessoal" hidden>
+        <pessoal />
+      </div>
     </div>
     <footer id="footer">
       <input
@@ -37,11 +52,34 @@
 
 <script>
 import cadastro from "./ModalCastro.vue";
+import pessoal from "./ModalPessoal.vue";
 export default {
   name: "ModalContents",
   methods: {
     closeModal() {
       document.querySelector("#modal").style = "display: none;";
+    },
+    changeScreen1() {
+      // Cadastro => Pessoal
+      document.querySelector("#cadastro").style = "display: none;";
+      document.querySelector("#pessoal").style = "display: block;";
+
+      // var btnPessoal = document.querySelector('.btnPessoal');
+      // btnPessoal.classList.add('selectBtn');
+
+      // var btnCadastro = document.querySelector('.btnCadastro');
+      // btnCadastro.classList.add('defaultBtn');
+    },
+    changeScreen2() {
+      // Pessoal => Cadastro
+      document.querySelector("#cadastro").style = "display: block;";
+      document.querySelector("#pessoal").style = "display: none;";
+
+      // var btnPessoal = document.querySelector('.btnPessoal');
+      // btnPessoal.classList.add('defaultBtn');
+
+      // var btnCadastro = document.querySelector('.btnCadastro');
+      // btnCadastro.classList.add('selectBtn');
     },
     confirm() {
       document.querySelector("#modal").style = "display: none;";
@@ -51,6 +89,7 @@ export default {
   },
   components: {
     cadastro,
+    pessoal,
   },
 };
 </script>
@@ -100,16 +139,8 @@ export default {
 .btnBody {
   height: 30px;
   width: 90px;
-  color: black;
-  border: 1px solid black;
   border-radius: 50px;
   font-size: 17px;
-}
-
-.btnBody:focus {
-  background-color: rgb(51, 51, 51);
-  color: white;
-  border: none;
 }
 
 .margin {
@@ -143,5 +174,17 @@ export default {
 
 .btnFooter {
   margin-top: 13px;
+}
+
+.defaultBtn {
+  background-color: pink;
+  color: black;
+  border: 1px solid black;
+}
+
+.selectBtn {
+  background-color: rgb(51, 51, 51);
+  color: White;
+  border: none;
 }
 </style>

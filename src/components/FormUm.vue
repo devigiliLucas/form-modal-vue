@@ -90,11 +90,8 @@
 </template>
 
 <script>
-// import { maska } from 'maska'
-
 export default {
   name: "formulárioUm",
-  // directives: { maska },
   methods: {
     hiddenForm1() {
       const Nome = document.querySelector(".name").value;

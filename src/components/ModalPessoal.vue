@@ -7,29 +7,29 @@
       <div id="infos">
         <div id="colunaUm">
           <div id="labelUm">
-            <label>CPF</label>
-            <label>Celular</label>
+            <label>País</label>
+            <label>Endereço</label>
           </div>
           <div id="infoUm">
-            <p class="cpf">104.330.039-10</p>
-            <p class="celular">(47)99951-5675</p>
+            <p class="pais">Brasil</p>
+            <p class="endereco">Rua das Nações, <br> Bairro das Nações</p>
           </div>
         </div>
 
         <div id="colunaDois">
           <div id="labelDois">
-            <label>Nome</label>
-            <label>Contato</label>
+            <label>Cidade</label>
+            <label>Numero</label>
           </div>
           <div id="infoDois">
-            <p class="nome">Lucas Gabriel Devigili</p>
-            <p class="contato">WhatsApp</p>
+            <p class="nome">Indaial</p>
+            <p class="contato">390</p>
           </div>
         </div>
 
         <div id="colunaTres">
-          <label>Nascimento</label>
-          <p class="nascimento">18/02/2005</p>
+          <label>Cep</label>
+          <p class="nascimento">89-082209</p>
         </div>
       </div>
     </div>
@@ -38,10 +38,7 @@
 
 <script>
 export default {
-  name: "modalCadastro",
-  methods: {
-    
-  }
+  name: "modalPessoal",
 };
 </script>
 

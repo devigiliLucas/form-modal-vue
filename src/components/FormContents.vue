@@ -11,7 +11,7 @@
       <formularioUm />
       <formularioDois />
       <formularioTres />
-        <div id="modal" hidden>
+        <div id="modal">
         <modal />
       </div>
     </div>

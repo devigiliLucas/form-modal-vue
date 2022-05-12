@@ -1,5 +1,5 @@
 <template>
-  <form id="form2" >
+  <form id="form2">
     <br />
     <div id="texts">
       <h2 class="subtitle">Dados pessoais</h2>
@@ -24,7 +24,7 @@
       <label>Endereço</label>
     </div>
     <div id="logradouro2">
-      <input type="number" class="mediumInput cep" required />
+      <input type="text" class="mediumInput cep" v-maska="'#####-###'" required />
       <input type="text" class="mediumInput paddingInput address" required />
     </div>
     <label>Número</label>
@@ -46,7 +46,8 @@ export default {
   name: "formulárioDois",
   methods: {
     hiddenForm2() {
-      // var body = document.querySelector("*")
+      // var btnCadastro = document.querySelector('.btnCadastro');
+      var body = document.querySelector("*")
       var Pais = document.querySelector(".contry").value;
       var Cidade = document.querySelector(".city").value;
       var CEP = document.querySelector(".cep").value;
@@ -71,7 +72,8 @@ export default {
         document.getElementById("form1").style = "display: none;";
         document.getElementById("form3").style = "display: none;";
         document.querySelector("#modal").style = "display: block;";
-        // body.style.filter='backgrowndColor: black;';
+        body.style.filter='backgrowndColor: black;';
+        // btnCadastro.classList.add('selectBtn');
       } else {
         alert("Preencha todos os campos corretamente");
       }
