@@ -1,0 +1,282 @@
+<template>
+  <form id="form1" hidden>
+    <div id="texts">
+      <h1 class="title">Seja bem-vindo</h1>
+      <br />
+      <h2 class="subtitle">Dados de contato</h2>
+      <br />
+      <p class="text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Orci, volutpat
+        in <br />iaculis nec nisl tellus.
+      </p>
+      <br />
+    </div>
+    <label>Nome completo</label>
+    <br />
+    <input type="text" class="bigInput name" name="nome" autocomplete="off" />
+    <div id="labelEmail">
+      <label>E-mail</label>
+      <label>Confirmar e-mail</label>
+    </div>
+    <div id="email">
+      <input
+        type="text"
+        class="mediumInput email"
+        name="email"
+        autocomplete="off"
+      />
+      <input
+        type="text"
+        class="mediumInput paddingInput confirmacao"
+        name="confirmacao"
+        formtarget="email"
+        autocomplete="off"
+      />
+    </div>
+    <div id="labelNumbers">
+      <label>Cpf</label>
+      <label>Celular</label>
+    </div>
+    <div id="numbers">
+      <input
+        type="text"
+        class="mediumInput cpf"
+        name="cpf"
+        maxlength="14"
+        autocomplete="off"
+      />
+      <input
+        type="text"
+        class="mediumInput paddingInput celphone"
+        name="celular"
+      />
+    </div>
+    <label>Data de nascimento</label>
+    <br />
+    <input type="date" class="mediumInput data" name="data" />
+    <p class="bottonText">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    </p>
+    <br />
+    <p class="bottonText">Mattis semper odio preretium vestibulum nulla</p>
+    <br />
+    <div id="sms">
+      <input type="checkbox" name="sms" />
+      <label>Email e SMS</label>
+    </div>
+    <div id="mensageApp">
+      <input type="checkbox" name="whatsapp" />
+      <label>Whatsapp</label>
+    </div>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Orci, volutpat
+      in <br />iaculis nec nisl tellus. Amet tellus nunc dolor magna risus.
+      <br />Habitant neque, id risus diam
+    </p>
+    <br />
+    <div id="button">
+      <input
+        type="button"
+        class="btn next1"
+        value="confirmar"
+        @click="hiddenForm1"
+      />
+    </div>
+  </form>
+</template>
+
+<script>
+export default {
+  name: "formulárioUm",
+  methods: {
+    hiddenForm1() {
+      const Nome = document.querySelector(".name").value;
+      const Email = document.querySelector(".email").value;
+      const Confirmacao = document.querySelector(".confirmacao").value;
+      const CPF = document.querySelector(".cpf").value;
+      const Celular = document.querySelector(".celphone").value;
+
+      function isCPF(strCPF) {
+        var Soma;
+        var Resto;
+        var i;
+        Soma = 0;
+        if (strCPF == "00000000000") return false;
+
+        for (i = 1; i <= 9; i++)
+          Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+        Resto = (Soma * 10) % 11;
+
+        if (Resto == 10 || Resto == 11) Resto = 0;
+        if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+        Soma = 0;
+        for (i = 1; i <= 10; i++)
+          Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+        Resto = (Soma * 10) % 11;
+
+        if (Resto == 10 || Resto == 11) Resto = 0;
+        if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+        return true;
+      }
+      var strCPF = CPF;
+
+      function isEmail() {
+        var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+
+        if (reg.test(Email)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      function sameEmail() {
+        if (Email === Confirmacao && Email !== "") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      function isWritten() {
+        if (
+          Nome !== "" ||
+          Email !== "" ||
+          Confirmacao !== "" ||
+          CPF !== "" ||
+          Celular !== ""
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      function confirmation() {
+        if (
+          isCPF(strCPF) === true &&
+          isEmail() === true &&
+          sameEmail() === true &&
+          isWritten() === true
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      if (confirmation() === true) {
+        document.getElementById("form1").style = "display: none;";
+        document.getElementById("form2").style = "display: block;";
+        document.getElementById("form3").style = "display: none;";
+      } else {
+        alert("Preencha todos os campos corretamente");
+      }
+    },
+  },
+};
+</script>
+
+<style scoped>
+* {
+  color: rgb(0, 0, 0);
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+#form1 {
+  z-index: 0;
+  right: -450;
+}
+
+input {
+  margin-bottom: 20px;
+  margin-top: 0px;
+  border: solid 1px black;
+}
+
+.bigInput {
+  height: 50px;
+  width: 528px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.mediumInput {
+  height: 50px;
+  width: 230px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+#labelEmail {
+  display: flex;
+  justify-content: space-between;
+  width: 410px;
+}
+
+#email {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#labelNumbers {
+  display: flex;
+  justify-content: space-between;
+  width: 340px;
+}
+
+#numbers {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.data {
+  display: flex;
+  flex-direction: row-reverse;
+  font-weight: lighter;
+}
+
+.paddingInput {
+  margin-left: 56px;
+}
+
+#sms {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 120px;
+}
+
+#mensageApp {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100px;
+}
+
+.btn {
+  font-size: 20px;
+  padding: 10px 55px;
+  border: 0px;
+  border-radius: 30px;
+  color: white;
+  background-color: rgb(255, 20, 106);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgba(255, 20, 106, 0.616);
+}
+
+.bottonText {
+  font: bold;
+}
+</style>
