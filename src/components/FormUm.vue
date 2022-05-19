@@ -1,5 +1,5 @@
 <template>
-  <form id="form1" hidden>
+  <form id="form1">
     <div id="texts">
       <h1 class="title">Seja bem-vindo</h1>
       <br />
@@ -13,7 +13,13 @@
     </div>
     <label>Nome completo</label>
     <br />
-    <input type="text" class="bigInput name" name="nome" autocomplete="Off" />
+    <input
+      type="text"
+      class="bigInput name"
+      name="nome"
+      v-model="name"
+      autocomplete="Off"
+    />
     <div id="labelEmail">
       <label>E-mail</label>
       <label>Confirmar e-mail</label>
@@ -23,13 +29,14 @@
         type="text"
         class="mediumInput email"
         name="email"
+        v-model="email"
         autocomplete="off"
       />
       <input
         type="text"
         class="mediumInput paddingInput confirmacao"
         name="confirmacao"
-        formtarget="email"
+        v-model="confirmacao"
         autocomplete="off"
       />
     </div>
@@ -44,8 +51,9 @@
         name="cpf"
         maxlength="14"
         autocomplete="off"
+        v-model="cpf"
         v-maska="'###.###.###-##'"
-        
+        @maska="rawCpf = $event.target.dataset.maskRawValue"
       />
       <input
         type="text"
@@ -53,11 +61,12 @@
         name="celular"
         v-maska="'(##) #####-####'"
         autocomplete="off"
+        v-model="cel"
       />
     </div>
     <label>Data de nascimento</label>
     <br />
-    <input type="date" class="mediumInput data" name="data" />
+    <input type="date" class="mediumInput data" name="data" v-model="data" />
     <p class="bottonText">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit
     </p>
@@ -83,7 +92,7 @@
         type="button"
         class="btn next1"
         value="confirmar"
-        @click="hiddenForm1"
+        @click="hiddenForm1(isEmail, isCPF, sameEmail, isWritten), saveUm()"
       />
     </div>
   </form>
@@ -92,90 +101,108 @@
 <script>
 export default {
   name: "formulárioUm",
+  data() {
+    return {
+      form: {
+        cpf: "",
+        rawCpf: "",
+        name: "",
+        email: "",
+        confirmacao: "",
+        cel: "",
+        data: "",
+      },
+    };
+  },
+
   methods: {
-    hiddenForm1() {
-      const Nome = document.querySelector(".name").value;
-      const Email = document.querySelector(".email").value;
-      const Confirmacao = document.querySelector(".confirmacao").value;
-      const CPF = document.querySelector(".cpf").value;
-      const Celular = document.querySelector(".celphone").value;
+    // saveUm() {
+    //   let tasks = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) :[];
+    //   tasks.push(this.form);
+    //   localStorage.setItem("tasks", JSON.stringify(tasks));
+    //   this.$router.push({ name: "sing_up" });
+    // },
 
-      function isCPF(strCPF) {
-        var Soma;
-        var Resto;
-        var i;
-        Soma = 0;
-        if (strCPF == "00000000000") return false;
+    isCPF() {
+      var Soma;
+      var Resto;
+      var i;
+      Soma = 0;
+      if (this.rawCpf == "00000000000") return false;
 
-        for (i = 1; i <= 9; i++)
-          Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
-        Resto = (Soma * 10) % 11;
+      for (i = 1; i <= 9; i++)
+        Soma = Soma + parseInt(this.rawCpf.substring(i - 1, i)) * (11 - i);
+      Resto = (Soma * 10) % 11;
 
-        if (Resto == 10 || Resto == 11) Resto = 0;
-        if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+      if (Resto == 10 || Resto == 11) Resto = 0;
+      if (Resto != parseInt(this.rawCpf.substring(9, 10))) return false;
 
-        Soma = 0;
-        for (i = 1; i <= 10; i++)
-          Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
-        Resto = (Soma * 10) % 11;
+      Soma = 0;
+      for (i = 1; i <= 10; i++)
+        Soma = Soma + parseInt(this.rawCpf.substring(i - 1, i)) * (12 - i);
+      Resto = (Soma * 10) % 11;
 
-        if (Resto == 10 || Resto == 11) Resto = 0;
-        if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+      if (Resto == 10 || Resto == 11) Resto = 0;
+      if (Resto != parseInt(this.rawCpf.substring(10, 11))) return false;
+    },
+
+    isEmail() {
+      var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+
+      if (reg.test(this.email)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    sameEmail() {
+      if (this.email === this.confirmacao) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    isWritten() {
+      if (
+        this.rawCpf === "" ||
+        this.name === "" ||
+        this.email === "" ||
+        this.confirmacao === "" ||
+        this.cel === "" ||
+        this.data === ""
+      ) {
+        return false;
+      } else {
         return true;
       }
-      var strCPF = CPF;
+    },
 
-      function isEmail() {
-        var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-
-        if (reg.test(Email)) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-
-      function sameEmail() {
-        if (Email === Confirmacao && Email !== "") {
-          return true;
-        } else {
-          return false;
-        }
-      }
-
-      function isWritten() {
-        if (
-          Nome !== "" ||
-          Email !== "" ||
-          Confirmacao !== "" ||
-          CPF !== "" ||
-          Celular !== ""
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-
-      function confirmation() {
-        if (
-          isCPF(strCPF) === true &&
-          isEmail() === true &&
-          sameEmail() === true &&
-          isWritten() === true
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-
-      if (confirmation() === true) {
+    hiddenForm1(isEmail, isCPF, sameEmail, isWritten) {
+      if (
+        isEmail() === true &&
+        isCPF() !== false &&
+        sameEmail() === true &&
+        isWritten() === true
+      ) {
+        console.log("Foi");
         document.getElementById("form1").style = "display: none;";
         document.getElementById("form2").style = "display: block;";
-        document.getElementById("form3").style = "display: none;";
+        console.log("Nome: " + this.name);
+        console.log("E-mail: " + this.email);
+        console.log("Confirmação: " + this.confirmacao);
+        console.log("Cpf: " + this.cpf);
+        console.log("Celular: " + this.cel);
+        console.log("Data: " + this.data);
       } else {
-        alert("Preencha todos os campos corretamente");
+        console.log("Não foi");
+        console.log("Nome: " + this.name);
+        console.log("E-mail: " + this.email);
+        console.log("Confirmação: " + this.confirmacao);
+        console.log("Cpf: " + this.cpf);
+        console.log("Celular: " + this.cel);
+        console.log("Data: " + this.data);
       }
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <form id="form2">
+  <form id="form2" hidden>
     <br />
     <div id="texts">
       <h2 class="subtitle">Dados pessoais</h2>
@@ -16,26 +16,42 @@
       <label>Cidade</label>
     </div>
     <div id="logradouro1">
-      <input type="text" class="mediumInput contry" required />
-      <input type="text" class="mediumInput paddingInput city" required />
+      <input type="text" class="mediumInput contry" v-model="contry" required />
+      <input
+        type="text"
+        class="mediumInput paddingInput city"
+        v-model="city"
+        required
+      />
     </div>
     <div id="labelLogradouro2">
       <label>Cep</label>
       <label>Endereço</label>
     </div>
     <div id="logradouro2">
-      <input type="text" class="mediumInput cep" v-maska="'#####-###'" required />
-      <input type="text" class="mediumInput paddingInput address" required />
+      <input
+        type="text"
+        class="mediumInput cep"
+        v-maska="'##-######'"
+        v-model="cep"
+        required
+      />
+      <input
+        type="text"
+        class="mediumInput paddingInput address"
+        v-model="addres"
+        required
+      />
     </div>
     <label>Número</label>
     <br />
-    <input type="number" class="bigInput number" required />
+    <input type="number" class="bigInput number" v-model="number" required />
     <div id="button">
       <input
         type="button"
         class="btn next2"
         value="Confirmar"
-        @click="hiddenForm2()"
+        @click="hiddenForm2(confirmacao)"
       />
     </div>
   </form>
@@ -44,36 +60,35 @@
 <script>
 export default {
   name: "formulárioDois",
+  data() {
+    return {
+      contry: "",
+      city: "",
+      cep: "",
+      addres: "",
+      number: "",
+    };
+  },
   methods: {
-    hiddenForm2() {
-      // var btnCadastro = document.querySelector('.btnCadastro');
-      var body = document.querySelector("*")
-      var Pais = document.querySelector(".contry").value;
-      var Cidade = document.querySelector(".city").value;
-      var CEP = document.querySelector(".cep").value;
-      var Endereco = document.querySelector(".address").value;
-      var Number = document.querySelector(".number").value;
-
-      function confirmacao() {
-        if (
-          Pais === "" ||
-          Cidade === "" ||
-          CEP === "" ||
-          Endereco === "" ||
-          Number === ""
-        ) {
-          return false;
-        } else {
-          return true;
-        }
+    confirmacao() {
+      if (
+        this.contry === "" ||
+        this.city === "" ||
+        this.cep === "" ||
+        this.address === "" ||
+        this.number === ""
+      ) {
+        return false;
+      } else {
+        return true;
       }
+    },
 
+    hiddenForm2(confirmacao) {
       if (confirmacao() === true) {
         document.getElementById("form1").style = "display: none;";
         document.getElementById("form3").style = "display: none;";
         document.querySelector("#modal").style = "display: block;";
-        body.style.filter='backgrowndColor: black;';
-        // btnCadastro.classList.add('selectBtn');
       } else {
         alert("Preencha todos os campos corretamente");
       }

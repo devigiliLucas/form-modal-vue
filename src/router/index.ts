@@ -13,7 +13,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/sign_up',
-    name: 'sing-_up',
+    name: 'sing_up',
     component: Sign_upView
   }
 ]

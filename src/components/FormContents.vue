@@ -11,9 +11,6 @@
       <formularioUm />
       <formularioDois />
       <formularioTres />
-        <div id="modal">
-        <modal />
-      </div>
     </div>
   </div>
 </template>
@@ -22,19 +19,21 @@
 import formularioUm from "./FormUm.vue";
 import formularioDois from "./FormDois.vue";
 import formularioTres from "./FormTres.vue";
-import modal from "./ModalContents.vue";
 export default {
   name: "FormForm",
   components: {
     formularioUm,
     formularioDois,
     formularioTres,
-    modal,
   },
 };
 </script>
 
 <style scoped>
+p {
+  color: black;
+}
+
 .photo {
   z-index: -1;
   height: 95vh;
@@ -51,21 +50,11 @@ export default {
 }
 
 #centralBox {
-  z-index: 0 ;
+  z-index: 0;
   height: 800px;
   width: 1100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-#modal {
-  height: 700px;
-  width: 600px;
-  /* display: flex;
-  align-items: center; */
-  z-index: 3;
-  position: absolute;
-  right: 250px;
 }
 </style>

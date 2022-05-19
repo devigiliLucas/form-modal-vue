@@ -22,8 +22,8 @@
             <label>Numero</label>
           </div>
           <div id="infoDois">
-            <p class="nome">Indaial</p>
-            <p class="contato">390</p>
+            <p class="cidade">Indaial</p>
+            <p class="numero">390</p>
           </div>
         </div>
 
@@ -40,6 +40,7 @@
 export default {
   name: "modalPessoal",
 };
+
 </script>
 
 <style scoped>
