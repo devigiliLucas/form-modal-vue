@@ -56,6 +56,7 @@ import pessoal from "./ModalPessoal.vue";
 export default {
   name: "ModalContents",
   methods: {
+
     closeModal() {
       document.querySelector("#modal").style = "display: none;";
     },

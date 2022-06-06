@@ -92,8 +92,10 @@
         type="button"
         class="btn next1"
         value="confirmar"
-        @click="hiddenForm1(isEmail, isCPF, sameEmail, isWritten), saveUm()"
+        @click="hiddenForm1(isEmail, isCPF, sameEmail, isWritten)"
+        
       />
+      <!-- @click="$emit('enviarDados')" -->
     </div>
   </form>
 </template>
@@ -101,9 +103,9 @@
 <script>
 export default {
   name: "formulárioUm",
+  // emits: [enviarDados],
   data() {
     return {
-      form: {
         cpf: "",
         rawCpf: "",
         name: "",
@@ -111,17 +113,13 @@ export default {
         confirmacao: "",
         cel: "",
         data: "",
-      },
     };
   },
 
   methods: {
-    // saveUm() {
-    //   let tasks = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) :[];
-    //   tasks.push(this.form);
-    //   localStorage.setItem("tasks", JSON.stringify(tasks));
-    //   this.$router.push({ name: "sing_up" });
-    // },
+    // enviarDados() {
+    //   console.log("oi")
+    //},
 
     isCPF() {
       var Soma;
@@ -189,20 +187,8 @@ export default {
         console.log("Foi");
         document.getElementById("form1").style = "display: none;";
         document.getElementById("form2").style = "display: block;";
-        console.log("Nome: " + this.name);
-        console.log("E-mail: " + this.email);
-        console.log("Confirmação: " + this.confirmacao);
-        console.log("Cpf: " + this.cpf);
-        console.log("Celular: " + this.cel);
-        console.log("Data: " + this.data);
       } else {
         console.log("Não foi");
-        console.log("Nome: " + this.name);
-        console.log("E-mail: " + this.email);
-        console.log("Confirmação: " + this.confirmacao);
-        console.log("Cpf: " + this.cpf);
-        console.log("Celular: " + this.cel);
-        console.log("Data: " + this.data);
       }
     },
   },
