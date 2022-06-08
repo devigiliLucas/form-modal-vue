@@ -6,9 +6,6 @@
     <div id="form">
       <FormForm />
     </div>
-    <div id="modal">
-        <modal />
-      </div>
   </main>
 </template>
 

@@ -8,12 +8,12 @@
       />
     </div>
     <div id="centralBox">
-      <formularioUm />
+      <formularioUm @enviarDados="receberDados"/>
       <formularioDois />
       <formularioTres />
     </div>
-      <div id="modal" hidden>
-        <modal />
+      <div id="modal">
+        <modal :contato="dados_contato"/>
       </div>
   </div>
 </template>
@@ -27,6 +27,11 @@ import modal from "@/components/ModalContents.vue";
 
 export default {
   name: "FormForm",
+  data() {
+    return{
+      dados_contato: {},
+    }
+  },
   components: {
     formularioUm,
     formularioDois,
@@ -34,9 +39,10 @@ export default {
     modal,
   },
   methods: {
-    //   receberDados() {
-    //   console.log(@receber-dados="enviarDados")
-    // },
+      receberDados(value) {
+        this.dados_contato = value
+
+    },
   }
 };
 </script>

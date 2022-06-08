@@ -17,8 +17,8 @@
       type="text"
       class="bigInput name"
       name="nome"
-      v-model="name"
-      autocomplete="Off"
+      v-model="dados.name"
+      autocomplete="on"
     />
     <div id="labelEmail">
       <label>E-mail</label>
@@ -29,15 +29,15 @@
         type="text"
         class="mediumInput email"
         name="email"
-        v-model="email"
-        autocomplete="off"
+        v-model="dados.email"
+        autocomplete="on"
       />
       <input
         type="text"
         class="mediumInput paddingInput confirmacao"
         name="confirmacao"
-        v-model="confirmacao"
-        autocomplete="off"
+        v-model="dados.confirmacao"
+        autocomplete="on"
       />
     </div>
     <div id="labelNumbers">
@@ -50,8 +50,8 @@
         class="mediumInput cpf"
         name="cpf"
         maxlength="14"
-        autocomplete="off"
-        v-model="cpf"
+        autocomplete="on"
+        v-model="dados.cpf"
         v-maska="'###.###.###-##'"
         @maska="rawCpf = $event.target.dataset.maskRawValue"
       />
@@ -61,12 +61,17 @@
         name="celular"
         v-maska="'(##) #####-####'"
         autocomplete="off"
-        v-model="cel"
+        v-model="dados.cel"
       />
     </div>
     <label>Data de nascimento</label>
     <br />
-    <input type="date" class="mediumInput data" name="data" v-model="data" />
+    <input
+      type="date"
+      class="mediumInput data"
+      name="data"
+      v-model="dados.data"
+    />
     <p class="bottonText">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit
     </p>
@@ -92,10 +97,12 @@
         type="button"
         class="btn next1"
         value="confirmar"
-        @click="hiddenForm1(isEmail, isCPF, sameEmail, isWritten)"
-        
+        @click="
+          hiddenForm1(isEmail, isCPF, sameEmail, isWritten),
+            testes(isEmail, isCPF, sameEmail, isWritten),
+            $emit('enviarDados', dados)
+        "
       />
-      <!-- @click="$emit('enviarDados')" -->
     </div>
   </form>
 </template>
@@ -103,23 +110,24 @@
 <script>
 export default {
   name: "formulárioUm",
-  // emits: [enviarDados],
   data() {
     return {
+      dados: {
         cpf: "",
-        rawCpf: "",
         name: "",
         email: "",
         confirmacao: "",
         cel: "",
         data: "",
+      },
+      rawCpf: "",
     };
   },
 
   methods: {
-    // enviarDados() {
-    //   console.log("oi")
-    //},
+    enviarDados() {
+      console.log("oi");
+    },
 
     isCPF() {
       var Soma;
@@ -147,7 +155,7 @@ export default {
     isEmail() {
       var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
-      if (reg.test(this.email)) {
+      if (reg.test(this.dados.email)) {
         return true;
       } else {
         return false;
@@ -155,7 +163,7 @@ export default {
     },
 
     sameEmail() {
-      if (this.email === this.confirmacao) {
+      if (this.dados.email === this.dados.confirmacao) {
         return true;
       } else {
         return false;
@@ -164,12 +172,12 @@ export default {
 
     isWritten() {
       if (
-        this.rawCpf === "" ||
-        this.name === "" ||
-        this.email === "" ||
-        this.confirmacao === "" ||
-        this.cel === "" ||
-        this.data === ""
+        this.dados.rawCpf === "" ||
+        this.dados.name === "" ||
+        this.dados.email === "" ||
+        this.dados.confirmacao === "" ||
+        this.dados.cel === "" ||
+        this.dados.data === ""
       ) {
         return false;
       } else {
@@ -189,6 +197,22 @@ export default {
         document.getElementById("form2").style = "display: block;";
       } else {
         console.log("Não foi");
+        console.log(this.dados.cpf);
+      }
+    },
+
+    testes(isEmail, isCPF, sameEmail, isWritten) {
+      if (isCPF() === false) {
+        console.log("CPF Inválido");
+      }
+      if (isEmail() === false) {
+        console.log("E-mail Inválido");
+      }
+      if (sameEmail() === false) {
+        console.log("E-mails diferentes");
+      }
+      if (isWritten() === false) {
+        console.log("Tem informações faltando");
       }
     },
   },

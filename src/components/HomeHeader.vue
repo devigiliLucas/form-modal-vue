@@ -4,7 +4,7 @@
       <div id="divPhoto">
         <svg
           width="200"
-          height="auto"
+          height="100"
           class="logo"
           viewBox="0 0 92 24"
           fill="none"

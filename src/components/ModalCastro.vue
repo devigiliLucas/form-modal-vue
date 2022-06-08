@@ -11,8 +11,8 @@
             <label>Celular</label>
           </div>
           <div id="infoUm">
-            <p class="cpf">104.330.039-10</p>
-            <p class="celular">(47)99951-5675</p>
+            <p class="cpf">{{ this.dados.cpf }}</p>
+            <p class="celular">{{ this.dados.cel }}</p>
           </div>
         </div>
 
@@ -22,14 +22,14 @@
             <label>Contato</label>
           </div>
           <div id="infoDois">
-            <p class="nome">Lucas Gabriel Devigili</p>
-            <p class="contato">WhatsApp</p>
+            <p class="nome">{{ this.dados.name }}</p>
+            <p class="contato">Whatsapp</p>
           </div>
         </div>
 
         <div id="colunaTres">
           <label>Nascimento</label>
-          <p class="nascimento">18/02/2005</p>
+          <p class="nascimento">{{ this.dados.data }}</p>
         </div>
       </div>
     </div>
@@ -39,8 +39,10 @@
 <script>
 export default {
   name: "modalCadastro",
-  methods: {
-    
+  props: {
+    dados: {
+      type: Object
+    }
   }
 };
 </script>

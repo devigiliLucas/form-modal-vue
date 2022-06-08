@@ -27,7 +27,7 @@
     </div>
     <div id="body">
       <div id="cadastro">
-        <cadastro />
+        <cadastro :dados="contato" />
       </div>
       <div id="pessoal" hidden>
         <pessoal />
@@ -87,6 +87,16 @@ export default {
       document.getElementById("form2").style = "display: none;";
       document.getElementById("form3").style = "display: block;";
     },
+  },
+  props: {
+    pessoal: {
+      type: Object,
+
+    },
+    contato: {
+      type: Object,
+
+    }
   },
   components: {
     cadastro,
