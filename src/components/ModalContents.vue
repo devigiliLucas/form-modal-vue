@@ -30,7 +30,7 @@
         <cadastro :dados="contato" />
       </div>
       <div id="pessoal" hidden>
-        <pessoal />
+        <modalPessoal :dadosEndereco="endereco"/>
       </div>
     </div>
     <footer id="footer">
@@ -52,7 +52,7 @@
 
 <script>
 import cadastro from "./ModalCastro.vue";
-import pessoal from "./ModalPessoal.vue";
+import modalPessoal from "./ModalPessoal.vue";
 export default {
   name: "ModalContents",
   methods: {
@@ -89,7 +89,7 @@ export default {
     },
   },
   props: {
-    pessoal: {
+    endereco: {
       type: Object,
 
     },
@@ -100,7 +100,7 @@ export default {
   },
   components: {
     cadastro,
-    pessoal,
+    modalPessoal,
   },
 };
 </script>

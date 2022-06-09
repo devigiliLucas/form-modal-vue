@@ -11,8 +11,8 @@
             <label>Celular</label>
           </div>
           <div id="infoUm">
-            <p class="cpf">{{ this.dados.cpf }}</p>
-            <p class="celular">{{ this.dados.cel }}</p>
+            <p class="cpf">{{ dados.cpf }}</p>
+            <p class="celular">{{ dados.cel }}</p>
           </div>
         </div>
 
@@ -22,14 +22,14 @@
             <label>Contato</label>
           </div>
           <div id="infoDois">
-            <p class="nome">{{ this.dados.name }}</p>
+            <p class="nome">{{ dados.name }}</p>
             <p class="contato">Whatsapp</p>
           </div>
         </div>
 
         <div id="colunaTres">
           <label>Nascimento</label>
-          <p class="nascimento">{{ this.dados.data }}</p>
+          <p class="nascimento">{{ dados.data }}</p>
         </div>
       </div>
     </div>

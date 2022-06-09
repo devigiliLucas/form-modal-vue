@@ -16,11 +16,11 @@
       <label>Cidade</label>
     </div>
     <div id="logradouro1">
-      <input type="text" class="mediumInput contry" v-model="contry" required />
+      <input type="text" class="mediumInput country" v-model=" dadosEndereco.country" required />
       <input
         type="text"
         class="mediumInput paddingInput city"
-        v-model="city"
+        v-model=" dadosEndereco.city"
         required
       />
     </div>
@@ -33,25 +33,25 @@
         type="text"
         class="mediumInput cep"
         v-maska="'##-######'"
-        v-model="cep"
+        v-model=" dadosEndereco.cep"
         required
       />
       <input
         type="text"
         class="mediumInput paddingInput address"
-        v-model="addres"
+        v-model=" dadosEndereco.addres"
         required
       />
     </div>
     <label>Número</label>
     <br />
-    <input type="number" class="bigInput number" v-model="number" required />
+    <input type="number" class="bigInput number" v-model=" dadosEndereco.number" required />
     <div id="button">
       <input
         type="button"
         class="btn next2"
         value="Confirmar"
-        @click="hiddenForm2(confirmacao)"
+        @click="hiddenForm2(confirmacao), $emit('enviarDadosEndereco', dadosEndereco)"
       />
     </div>
   </form>
@@ -62,21 +62,27 @@ export default {
   name: "formulárioDois",
   data() {
     return {
-      contry: "",
-      city: "",
-      cep: "",
-      addres: "",
-      number: "",
+      dadosEndereco: {
+        country: "",
+        city: "",
+        cep: "",
+        addres: "",
+        number: "",
+      }
     };
   },
   methods: {
+    enviarDadosEndereco() {
+      console.log("oi");
+    },
+
     confirmacao() {
       if (
-        this.contry === "" ||
-        this.city === "" ||
-        this.cep === "" ||
-        this.address === "" ||
-        this.number === ""
+        this.dadosEndereco.country === "" ||
+        this.dadosEndereco.city === "" ||
+        this.dadosEndereco.cep === "" ||
+        this.dadosEndereco.address === "" ||
+        this.dadosEndereco.number === ""
       ) {
         return false;
       } else {

@@ -9,11 +9,11 @@
     </div>
     <div id="centralBox">
       <formularioUm @enviarDados="receberDados"/>
-      <formularioDois />
+      <formularioDois @enviarDadosEndereco="receberEndereco"/>
       <formularioTres />
     </div>
-      <div id="modal">
-        <modal :contato="dados_contato"/>
+      <div id="modal" hidden>
+        <modal :contato="dados_contato" :endereco="dados_endereco"/>
       </div>
   </div>
 </template>
@@ -30,6 +30,7 @@ export default {
   data() {
     return{
       dados_contato: {},
+      dados_endereco: {},
     }
   },
   components: {
@@ -43,6 +44,10 @@ export default {
         this.dados_contato = value
 
     },
+
+      receberEndereco(value) {
+        this.dados_endereco = value
+      }
   }
 };
 </script>

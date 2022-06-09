@@ -11,8 +11,8 @@
             <label>Endereço</label>
           </div>
           <div id="infoUm">
-            <p class="pais">Brasil</p>
-            <p class="endereco">Rua das Nações, <br> Bairro das Nações</p>
+            <p class="pais">{{ dadosEndereco.country }}</p>
+            <p class="endereco">{{ dadosEndereco.addres }}</p>
           </div>
         </div>
 
@@ -22,14 +22,14 @@
             <label>Numero</label>
           </div>
           <div id="infoDois">
-            <p class="cidade">Indaial</p>
-            <p class="numero">390</p>
+            <p class="cidade">{{ dadosEndereco.city }}</p>
+            <p class="numero">{{ dadosEndereco.number }}</p>
           </div>
         </div>
 
         <div id="colunaTres">
           <label>Cep</label>
-          <p class="nascimento">89-082209</p>
+          <p class="cep">{{ dadosEndereco.cep }}</p>
         </div>
       </div>
     </div>
@@ -39,6 +39,16 @@
 <script>
 export default {
   name: "modalPessoal",
+  props: {
+    dadosEndereco: {
+      type: Object
+    }
+  },
+  watch: {
+    dadosEndereco: function(params) {
+      console.log(params);
+    }
+  }
 };
 
 </script>
@@ -96,6 +106,14 @@ export default {
 #infoDois {
   display: flex;
   font-weight: bold;
+}
+
+.pais {
+  width: 276px;
+}
+
+.endereco {
+  width: 150px;
 }
 
 .nascimento {
