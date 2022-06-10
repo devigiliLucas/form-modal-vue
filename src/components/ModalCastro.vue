@@ -23,7 +23,7 @@
           </div>
           <div id="infoDois">
             <p class="nome">{{ dados.name }}</p>
-            <p class="contato">Whatsapp</p>
+            <p class="contato">{{ contato }}</p>
           </div>
         </div>
 
@@ -42,6 +42,15 @@ export default {
   props: {
     dados: {
       type: Object
+    }
+  },
+  computed: {
+    contato() {
+      if (this.dados.sms == true) {
+        return "SMS"
+      } else {
+        return "❤Whatsapp"
+      }
     }
   }
 };

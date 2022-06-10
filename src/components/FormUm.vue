@@ -79,11 +79,11 @@
     <p class="bottonText">Mattis semper odio preretium vestibulum nulla</p>
     <br />
     <div id="sms">
-      <input type="checkbox" name="sms" />
+      <input type="checkbox" name="sms" v-model="dados.sms" />
       <label>Email e SMS</label>
     </div>
     <div id="mensageApp">
-      <input type="checkbox" name="whatsapp" />
+      <input type="checkbox" name="whatsapp" v-model="dados.whatsApp" />
       <label>Whatsapp</label>
     </div>
     <p>
@@ -99,7 +99,7 @@
         value="confirmar"
         @click="
           hiddenForm1(isEmail, isCPF, sameEmail, isWritten),
-            testes(isEmail, isCPF, sameEmail, isWritten),
+            error(isEmail, isCPF, sameEmail, isWritten),
             $emit('enviarDados', dados)
         "
       />
@@ -119,6 +119,8 @@ export default {
         confirmacao: "",
         cel: "",
         data: "",
+        sms: "",
+        whatsApp: "",
       },
       rawCpf: "",
     };
@@ -127,6 +129,7 @@ export default {
   methods: {
     enviarDados() {
       console.log("oi");
+      
     },
 
     isCPF() {
@@ -177,7 +180,8 @@ export default {
         this.dados.email === "" ||
         this.dados.confirmacao === "" ||
         this.dados.cel === "" ||
-        this.dados.data === ""
+        this.dados.data === "" ||
+        (this.dados.whatsApp == false && this.dados.sms == false)
       ) {
         return false;
       } else {
@@ -197,22 +201,24 @@ export default {
         document.getElementById("form2").style = "display: block;";
       } else {
         console.log("Não foi");
-        console.log(this.dados.cpf);
+
+        console.log(this.dados.sms);
+        console.log(this.dados.whatsApp);
       }
     },
 
-    testes(isEmail, isCPF, sameEmail, isWritten) {
+    error(isEmail, isCPF, sameEmail, isWritten) {
       if (isCPF() === false) {
-        console.log("CPF Inválido");
+        alert("CPF Inválido");
       }
       if (isEmail() === false) {
-        console.log("E-mail Inválido");
+        alert("E-mail Inválido");
       }
       if (sameEmail() === false) {
-        console.log("E-mails diferentes");
+        alert("E-mails diferentes");
       }
       if (isWritten() === false) {
-        console.log("Tem informações faltando");
+        alert("Tem informações faltando");
       }
     },
   },

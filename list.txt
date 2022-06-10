@@ -1,0 +1,4 @@
+Lista de itens que não estão implementados. 
+
+- Erros fora dos alerts
+- Seletor de WhatsApp ou SMS

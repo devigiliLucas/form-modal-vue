@@ -82,11 +82,11 @@ p {
 }
 
 #modal {
-  height: 700px;
-  width: 600px;
+  height: 100vh;
+  width: 100vw;
   z-index: 3;
-  position: absolute;
-  right: 250px;
-  top:100px;
+  position: fixed;
+  right: 0px;
+  top:00px;
 }
 </style>

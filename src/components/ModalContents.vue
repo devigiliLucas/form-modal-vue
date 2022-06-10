@@ -1,52 +1,54 @@
 <template>
-  <div id="modal">
-    <header id="header">
-      <div id="title">
-        <h2>Confirmar informações de cadastro</h2>
+  <div id="background">
+    <div id="modal">
+      <header id="header">
+        <div id="title">
+          <h2>Confirmar informações de cadastro</h2>
+        </div>
+        <div id="btnClose">
+          <p class="btnClose" @click="closeModal()">X</p>
+        </div>
+      </header>
+      <div id="nav">
+        <p>Analíse e confirme os dados inputados no cadastro</p>
+        <div id="buttons">
+          <input
+            type="button"
+            class="btnBody btnCadastro selectBtn"
+            value="Cadastro"
+            @click="changeScreen2()"
+          />
+          <input
+            type="button"
+            class="btnBody btnPessoal margin"
+            value="Pessoal"
+            @click="changeScreen1()"
+          />
+        </div>
       </div>
-      <div id="btnClose">
-        <p @click="closeModal()">X</p>
+      <div id="body">
+        <div id="cadastro">
+          <cadastro :dados="contato" />
+        </div>
+        <div id="pessoal" hidden>
+          <modalPessoal :dadosEndereco="endereco" />
+        </div>
       </div>
-    </header>
-    <div id="nav">
-      <p>Analíse e confirme os dados inputados no cadastro</p>
-      <div id="buttons">
+      <footer id="footer">
         <input
           type="button"
-          class="btnBody btnCadastro"
-          value="Cadastro"
-          @click="changeScreen2()"
+          class="btnFooter btnCancel"
+          @click="closeModal()"
+          value="Cancelar"
         />
         <input
           type="button"
-          class="btnBody btnPessoal margin"
-          value="Pessoal"
-          @click="changeScreen1()"
+          class="btnFooter btnConfirmar"
+          @click="confirm()"
+          value="Confirmar"
         />
-      </div>
+      </footer>
     </div>
-    <div id="body">
-      <div id="cadastro">
-        <cadastro :dados="contato" />
-      </div>
-      <div id="pessoal" hidden>
-        <modalPessoal :dadosEndereco="endereco"/>
-      </div>
-    </div>
-    <footer id="footer">
-      <input
-        type="button"
-        class="btnFooter btnCancel"
-        @click="closeModal()"
-        value="Cancelar"
-      />
-      <input
-        type="button"
-        class="btnFooter btnConfirmar"
-        @click="confirm()"
-        value="Confirmar"
-      />
-    </footer>
   </div>
 </template>
 
@@ -56,7 +58,6 @@ import modalPessoal from "./ModalPessoal.vue";
 export default {
   name: "ModalContents",
   methods: {
-
     closeModal() {
       document.querySelector("#modal").style = "display: none;";
     },
@@ -65,22 +66,22 @@ export default {
       document.querySelector("#cadastro").style = "display: none;";
       document.querySelector("#pessoal").style = "display: block;";
 
-      // var btnPessoal = document.querySelector('.btnPessoal');
-      // btnPessoal.classList.add('selectBtn');
+      var btnPessoal = document.querySelector(".btnPessoal");
+      btnPessoal.classList.add("selectBtn");
 
-      // var btnCadastro = document.querySelector('.btnCadastro');
-      // btnCadastro.classList.add('defaultBtn');
+      var btnCadastro = document.querySelector(".btnCadastro");
+      btnCadastro.classList.remove("selectBtn");
     },
     changeScreen2() {
       // Pessoal => Cadastro
       document.querySelector("#cadastro").style = "display: block;";
       document.querySelector("#pessoal").style = "display: none;";
 
-      // var btnPessoal = document.querySelector('.btnPessoal');
-      // btnPessoal.classList.add('defaultBtn');
+      var btnPessoal = document.querySelector(".btnPessoal");
+      btnPessoal.classList.remove("selectBtn");
 
-      // var btnCadastro = document.querySelector('.btnCadastro');
-      // btnCadastro.classList.add('selectBtn');
+      var btnCadastro = document.querySelector(".btnCadastro");
+      btnCadastro.classList.add("selectBtn");
     },
     confirm() {
       document.querySelector("#modal").style = "display: none;";
@@ -91,12 +92,10 @@ export default {
   props: {
     endereco: {
       type: Object,
-
     },
     contato: {
       type: Object,
-
-    }
+    },
   },
   components: {
     cadastro,
@@ -107,8 +106,16 @@ export default {
 
 <style scoped>
 * {
-  background-color: wheat;
+  background-color: rgb(255, 255, 255);
   color: black;
+}
+
+#background {
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999;
 }
 
 #modal {
@@ -117,6 +124,11 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   border-radius: 10px;
+  height: 700px;
+  width: 600px;
+  position: relative;
+  top: 150px;
+  left: 850px;
 }
 
 #header {
@@ -125,6 +137,10 @@ export default {
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+.btnClose {
+  cursor: pointer;
 }
 
 #btnClose {
@@ -185,12 +201,6 @@ export default {
 
 .btnFooter {
   margin-top: 13px;
-}
-
-.defaultBtn {
-  background-color: pink;
-  color: black;
-  border: 1px solid black;
 }
 
 .selectBtn {

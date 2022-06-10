@@ -116,6 +116,10 @@ export default {
   width: 150px;
 }
 
+.cep {
+    font-weight: bold;
+}
+
 .nascimento {
   font-weight: bold;
 }

@@ -49,7 +49,7 @@
     <div id="button">
       <input
         type="button"
-        class="btn next2"
+        class="btn next2 "
         value="Confirmar"
         @click="hiddenForm2(confirmacao), $emit('enviarDadosEndereco', dadosEndereco)"
       />
@@ -95,6 +95,7 @@ export default {
         document.getElementById("form1").style = "display: none;";
         document.getElementById("form3").style = "display: none;";
         document.querySelector("#modal").style = "display: block;";
+     // document.querySelector("*").style.backgroundColor="rgba(0, 0, 0, 4)"
       } else {
         alert("Preencha todos os campos corretamente");
       }

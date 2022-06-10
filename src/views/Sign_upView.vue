@@ -24,6 +24,7 @@ export default {
 </script>
 
 <style scoped>
+
 #header {
   height: 5vh;
 }
