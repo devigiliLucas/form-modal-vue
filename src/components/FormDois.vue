@@ -72,9 +72,9 @@ export default {
     };
   },
   methods: {
-    enviarDadosEndereco() {
-      console.log("oi");
-    },
+    // enviarDadosEndereco() {
+    //   console.log("oi");
+    // },
 
     confirmacao() {
       if (

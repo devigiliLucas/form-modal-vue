@@ -44,11 +44,6 @@ export default {
       type: Object
     }
   },
-  watch: {
-    dadosEndereco: function(params) {
-      console.log(params);
-    }
-  }
 };
 
 </script>

@@ -60,6 +60,7 @@
         class="mediumInput paddingInput celphone"
         name="celular"
         v-maska="'(##) #####-####'"
+        minlength="15"
         autocomplete="off"
         v-model="dados.cel"
       />
@@ -127,10 +128,10 @@ export default {
   },
 
   methods: {
-    enviarDados() {
-      console.log("oi");
+    // enviarDados() {
+    //   console.log("oi");
       
-    },
+    // },
 
     isCPF() {
       var Soma;
@@ -196,15 +197,9 @@ export default {
         sameEmail() === true &&
         isWritten() === true
       ) {
-        console.log("Foi");
         document.getElementById("form1").style = "display: none;";
         document.getElementById("form2").style = "display: block;";
-      } else {
-        console.log("Não foi");
-
-        console.log(this.dados.sms);
-        console.log(this.dados.whatsApp);
-      }
+      } 
     },
 
     error(isEmail, isCPF, sameEmail, isWritten) {

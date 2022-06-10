@@ -6,7 +6,7 @@
           <h2>Confirmar informações de cadastro</h2>
         </div>
         <div id="btnClose">
-          <p class="btnClose" @click="closeModal()">X</p>
+          <i class="fa-solid fa-x btnClose" @click="closeModal()"></i>
         </div>
       </header>
       <div id="nav">
@@ -126,7 +126,7 @@ export default {
   border-radius: 10px;
   height: 700px;
   width: 600px;
-  position: relative;
+  position: fixed;
   top: 150px;
   left: 850px;
 }
@@ -146,7 +146,7 @@ export default {
 #btnClose {
   position: absolute;
   right: 10%;
-  top: 25px;
+  top: 40px;
 }
 
 #title {

@@ -1,4 +1,4 @@
 Lista de itens que não estão implementados. 
 
-- Erros fora dos alerts
-- Seletor de WhatsApp ou SMS
+- Erros fora dos alerts;
+- Verificação completa do formulário, só está cerificando CPF e E-mail;

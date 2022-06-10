@@ -23,7 +23,14 @@
           </div>
           <div id="infoDois">
             <p class="nome">{{ dados.name }}</p>
-            <p class="contato">{{ contato }}</p>
+            <p class="contato">
+              <section class="ctt" v-if="contato">
+                <i class="fa-solid fa-message"></i>{{ "Email e SMS" }}
+              </section>
+              <section class="ctt" v-else>
+                <i class="fa-brands fa-whatsapp"></i>{{ "Whatsapp" }}
+              </section>
+            </p>
           </div>
         </div>
 
@@ -41,15 +48,16 @@ export default {
   name: "modalCadastro",
   props: {
     dados: {
-      type: Object
-    }
+      type: Object,
+    },
   },
-  computed: {
-    contato() {
+  
+ computed:{
+    contato(){
       if (this.dados.sms == true) {
-        return "SMS"
+        return true
       } else {
-        return "❤Whatsapp"
+        return false
       }
     }
   }
@@ -113,5 +121,18 @@ export default {
 
 .nascimento {
   font-weight: bold;
+}
+
+.ctt{
+  display: flex;
+  flex-direction: row;
+  width: 140px;
+}
+i{
+  width: 30px;
+}
+
+.nome{
+  width: 556px;
 }
 </style>
